@@ -1,0 +1,43 @@
+{% set version = "2.5.3" %}
+
+package:
+  name: magma
+  version: {{ version }} 
+
+source:
+   url: http://icl.utk.edu/projectsfiles/magma/downloads/magma-{{ version }}.tar.gz
+   sha1: 809867a477d67d0b137f6b2cea4eecaec057f53c 
+   patches:
+     - cmakelists.patch
+     - thread_queue.patch
+     - make.inc.openblas-add-toolchain-overrides.patch
+
+build:
+  number: 1
+  string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }} 
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake {{ cmake }}
+    - make {{ make }}  
+  host:
+    - openblas {{ openblas }}
+    - cudatoolkit-dev {{ cudatoolkit }}
+  run:
+    - openblas {{ openblas }}
+    - cudatoolkit {{ cudatoolkit }}
+
+about:
+  home: http://icl.cs.utk.edu/magma/software/index.html
+  license: BSD
+  license_family: BSD
+  license_file: COPYRIGHT
+  summary: Dense linear algebra library similar to LAPACK but for heterogeneous/hybrid architectures
+  description: |
+    Dense linear algebra library similar to LAPACK but for heterogeneous/hybrid architectures
+
+extra:
+  recipe-maintainers:
+    - open-ce/open-ce-dev-team

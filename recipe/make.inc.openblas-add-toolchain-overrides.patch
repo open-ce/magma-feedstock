@@ -1,0 +1,57 @@
+From 758cec2c57f5254528832aee632956a65d88e93d Mon Sep 17 00:00:00 2001
+From: "Brian W. Hart" <hartb@us.ibm.com>
+Date: Wed, 12 Dec 2018 14:15:37 -0600
+Subject: [PATCH] powerai: make.inc.openblas: add toolchain overrides
+
+---
+ make.inc-examples/make.inc.openblas | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
+
+diff --git a/make.inc-examples/make.inc.openblas b/make.inc-examples/make.inc.openblas
+index f73218b8..8bfbd165 100644
+--- a/make.inc-examples/make.inc.openblas
++++ b/make.inc-examples/make.inc.openblas
+@@ -22,14 +22,14 @@
+ # --------------------
+ # programs
+ 
+-CC        = gcc
+-CXX       = g++
+-NVCC      = nvcc
+-FORT      = gfortran
++CC        ?= gcc
++CXX       ?= g++
++NVCC      ?= nvcc
++FORT      ?= gfortran
+ 
+-ARCH      = ar
++ARCH      ?= ar
+ ARCHFLAGS = cr
+-RANLIB    = ranlib
++RANLIB    ?= ranlib
+ 
+ 
+ # --------------------
+@@ -39,14 +39,14 @@ RANLIB    = ranlib
+ # can be commented out if making only static library.
+ FPIC      = -fPIC
+ 
+-CFLAGS    = -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -fopenmp
+-FFLAGS    = -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -Wno-unused-dummy-argument
+-F90FLAGS  = -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -Wno-unused-dummy-argument -x f95-cpp-input
+-NVCCFLAGS = -O3         -DNDEBUG -DADD_       -Xcompiler "$(FPIC)" -std=c++11
+-LDFLAGS   =     $(FPIC)                       -fopenmp
++CFLAGS    ?= -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -fopenmp
++FFLAGS    ?= -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -Wno-unused-dummy-argument
++F90FLAGS  ?= -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -Wno-unused-dummy-argument -x f95-cpp-input
++NVCCFLAGS ?= -O3         -DNDEBUG -DADD_       -Xcompiler "$(FPIC)" -std=c++11
++LDFLAGS   ?=     $(FPIC)                       -fopenmp
+ 
+ # C++11 (gcc >= 4.7) is not required, but has benefits like atomic operations
+-CXXFLAGS := $(CFLAGS) -std=c++11
++CXXFLAGS ?= $(CFLAGS) -std=c++11
+ CFLAGS   += -std=c99
+ 
+ 
+-- 
+2.17.2 (Apple Git-113)

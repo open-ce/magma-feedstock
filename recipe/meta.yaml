@@ -15,16 +15,18 @@ source:
 build:
   number: 1
   string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }} 
+  script_env:
+    - CUDA_HOME
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ compiler('cuda') }}
     - cmake {{ cmake }}
     - make {{ make }}  
   host:
     - openblas {{ openblas }}
-    - cudatoolkit-dev {{ cudatoolkit }}
   run:
     - openblas {{ openblas }}
     - cudatoolkit {{ cudatoolkit }}

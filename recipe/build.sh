@@ -41,6 +41,7 @@ export PATH=$PREFIX/bin:$PATH
 # General content / dependency overrides
 export OPENBLASDIR="$PREFIX"
 export CUDADIR="$PREFIX"
+#export CUDAToolkit_INCLUDE_DIRS="$CUDA_HOME"/include
 
 # Basic toolchain overrides
 export ARCH="$AR"

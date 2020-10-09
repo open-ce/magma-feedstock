@@ -16,13 +16,12 @@ build:
   number: 2
   string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }} 
   script_env:
-    - OPEN_CE_CUDA_HOME
+    - CUDA_HOME
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - {{ compiler('cuda') }}
     - cmake {{ cmake }}
     - make {{ make }}  
   host:

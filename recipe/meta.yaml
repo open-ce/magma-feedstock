@@ -15,8 +15,6 @@ source:
 build:
   number: 2
   string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }} 
-  script_env:
-    - CUDA_HOME
 
 requirements:
   build:

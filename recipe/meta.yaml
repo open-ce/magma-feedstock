@@ -21,7 +21,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake {{ cmake }}
-    - make {{ make }}  
+    - make
   host:
     - openblas {{ openblas }}
   run:

@@ -13,7 +13,7 @@ source:
      - make.inc.openblas-add-toolchain-overrides.patch
 
 build:
-  number: 2
+  number: 3
   string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }} 
 
 requirements:

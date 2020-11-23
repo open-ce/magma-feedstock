@@ -1,4 +1,4 @@
-{% set version = "2.5.3" %}
+{% set version = "2.5.4" %}
 
 package:
   name: magma
@@ -6,7 +6,7 @@ package:
 
 source:
    url: http://icl.utk.edu/projectsfiles/magma/downloads/magma-{{ version }}.tar.gz
-   sha1: 809867a477d67d0b137f6b2cea4eecaec057f53c 
+   sha1: c428c9486c5f46f3595570ec898274a8bb888d5c
    patches:
      - cmakelists.patch
      - thread_queue.patch

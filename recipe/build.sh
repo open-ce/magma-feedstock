@@ -59,6 +59,9 @@ then
   GPU_TARGET="$GPU_TARGET sm_80"
 fi
 
+# Create symlinks of cublas headers into CONDA_PREFIX
+mkdir -p $CONDA_PREFIX/include
+find /usr/include -name cublas*.h -exec ln -s "{}" "$CONDA_PREFIX/include/" ';'
 export CXXFLAGS="${CXXFLAGS} -I${PREFIX}/include -I${CUDA_HOME}/include -I${CONDA_PREFIX}/include"
 mkdir build
 cd build

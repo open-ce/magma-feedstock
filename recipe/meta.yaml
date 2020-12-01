@@ -8,9 +8,10 @@ source:
    url: http://icl.utk.edu/projectsfiles/magma/downloads/magma-{{ version }}.tar.gz
    sha1: c428c9486c5f46f3595570ec898274a8bb888d5c
    patches:
-     - cmakelists.patch
-     - thread_queue.patch
-     - make.inc.openblas-add-toolchain-overrides.patch
+    # 00xx - patch is carried forward from https://github.com/pytorch/builder/
+    - 0001-cmakelists.patch
+    - 0002-thread_queue.patch
+    - 0003-make.inc.openblas-add-toolchain-overrides.patch
 
 build:
   number: 1

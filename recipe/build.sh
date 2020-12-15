@@ -53,10 +53,19 @@ cp make.inc-examples/make.inc.openblas ./make.inc
 # standard supported by both tool sets.
 export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//') -std=c++14"
 
+GPU_TARGET="sm_37 sm_60 sm_70 sm_75"
+if [[ $cudatoolkit == '11.0' ]]
+then
+  GPU_TARGET="$GPU_TARGET sm_80"
+fi
+
+# Create symlinks of cublas headers into CONDA_PREFIX
+mkdir -p $CONDA_PREFIX/include
+find /usr/include -name cublas*.h -exec ln -s "{}" "$CONDA_PREFIX/include/" ';'
+export CXXFLAGS="${CXXFLAGS} -I${PREFIX}/include -I${CUDA_HOME}/include -I${CONDA_PREFIX}/include"
 mkdir build
 cd build
-cmake .. -DUSE_FORTRAN=OFF -DGPU_TARGET="sm_37 sm_60 sm_70 sm_75" -DCMAKE_INSTALL_PREFIX=$PREFIX \
-         -DCMAKE_CXX_FLAGS=" -I${PREFIX}/include -I${CUDA_HOME}/include -I/usr/include" 
+cmake .. -DUSE_FORTRAN=OFF -DGPU_TARGET="$GPU_TARGET"  -DCMAKE_INSTALL_PREFIX=$PREFIX
 make -j$(getconf _NPROCESSORS_CONF)
 make install
 cd ..

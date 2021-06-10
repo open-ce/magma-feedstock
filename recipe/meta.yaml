@@ -30,6 +30,9 @@ requirements:
     - libstdcxx-ng  {{ libstdcxx }}
   host:
     - openblas {{ openblas }}
+    # Use pins to control cos6/cos7 matc
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
   run:
     - openblas {{ openblas }}
     - cudatoolkit {{ cudatoolkit }}

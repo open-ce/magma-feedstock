@@ -1,0 +1,5 @@
+recipes:
+{% if build_type == "cuda" %}
+  - name: magma
+    path: recipe
+{% endif %}

@@ -15,7 +15,7 @@ source:
 
 build:
   number: 2
-  string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }}    #[build_type == 'cuda']
+  string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }} 
   script_env:
     - CUDA_HOME
 
@@ -35,7 +35,7 @@ requirements:
     - libstdcxx-ng  {{ libstdcxx }}
   run:
     - openblas {{ openblas }}
-    - cudatoolkit {{ cudatoolkit }}          #[build_type == 'cuda']
+    - cudatoolkit {{ cudatoolkit }}
 
 about:
   home: http://icl.cs.utk.edu/magma/software/index.html

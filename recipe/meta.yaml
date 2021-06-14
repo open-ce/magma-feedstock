@@ -36,6 +36,9 @@ requirements:
   run:
     - openblas {{ openblas }}
     - cudatoolkit {{ cudatoolkit }}
+    # Use pins to control cos6/cos7 matc
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
 
 about:
   home: http://icl.cs.utk.edu/magma/software/index.html

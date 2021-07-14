@@ -14,7 +14,7 @@ source:
     - 0003-make.inc.openblas-add-toolchain-overrides.patch
 
 build:
-  number: 2
+  number: 3
   string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }} 
   script_env:
     - CUDA_HOME
@@ -36,9 +36,6 @@ requirements:
   run:
     - openblas {{ openblas }}
     - cudatoolkit {{ cudatoolkit }}
-    # Use pins to control cos6/cos7 matc
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
 
 about:
   home: http://icl.cs.utk.edu/magma/software/index.html

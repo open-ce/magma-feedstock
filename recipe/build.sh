@@ -60,7 +60,7 @@ cp make.inc-examples/make.inc.openblas ./make.inc
 export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//') -std=c++14"
 
 GPU_TARGET="sm_37 sm_60 sm_70 sm_75"
-if [[ $cudatoolkit == '11.0' ]]
+if [[ ${cudatoolkit%.*} == '11.0' ]]
 then
   GPU_TARGET="$GPU_TARGET sm_80"
 fi

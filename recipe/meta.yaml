@@ -14,7 +14,7 @@ source:
     - 0003-make.inc.openblas-add-toolchain-overrides.patch
 
 build:
-  number: 4
+  number: 5
   string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }} 
   script_env:
     - CUDA_HOME

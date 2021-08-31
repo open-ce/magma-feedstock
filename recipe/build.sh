@@ -59,6 +59,7 @@ cp make.inc-examples/make.inc.openblas ./make.inc
 # standard supported by both tool sets.
 export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//') -std=c++14"
 
+## Use centralized CUDA capability settings
 GPU_TARGET="${cuda_levels_details}"
 echo ${GPU_TARGET}
 

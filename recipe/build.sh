@@ -59,14 +59,9 @@ cp make.inc-examples/make.inc.openblas ./make.inc
 # standard supported by both tool sets.
 export CXXFLAGS="$(echo $CXXFLAGS | sed -e 's/ -std=[^ ]*//') -std=c++14"
 
-CUDA_CAPABILITIES="${cuda_levels_details}"
-if [[ ${cudatoolkit%.*} == '11' ]]
-then
-  CUDA_CAPABILITIES+=",${cuda11_levels_details}"
-fi
-echo ${CUDA_CAPABILITIES}
+GPU_TARGET="${cuda_levels_details}"
+echo ${GPU_TARGET}
 
-GPU_TARGET=${CUDA_CAPABILITIES}
 # Create symlinks of cublas headers into CONDA_PREFIX
 mkdir -p $CONDA_PREFIX/include
 find /usr/include -name cublas*.h -exec ln -s "{}" "$CONDA_PREFIX/include/" ';'

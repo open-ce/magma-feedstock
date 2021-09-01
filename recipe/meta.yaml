@@ -25,14 +25,8 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake {{ cmake }}
     - make
-    # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
   host:
     - openblas {{ openblas }}
-    # Use pins to control cos6/cos7 matc
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
   run:
     - openblas {{ openblas }}
     - cudatoolkit {{ cudatoolkit }}

@@ -14,7 +14,7 @@ source:
     - 0003-make.inc.openblas-add-toolchain-overrides.patch
 
 build:
-  number: 5
+  number: 6
   string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }} 
   script_env:
     - CUDA_HOME
@@ -26,13 +26,13 @@ requirements:
     - cmake {{ cmake }}
     - make
     # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
+    - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
+    - libstdcxx-ng  {{ libstdcxx }}   # [x86_64 and c_compiler_version == "7.2.*"]
   host:
     - openblas {{ openblas }}
-    # Use pins to control cos6/cos7 matc
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
+    - libstdcxx-ng  {{ libstdcxx }}   # [x86_64 and c_compiler_version == "7.2.*"]
   run:
     - openblas {{ openblas }}
     - cudatoolkit {{ cudatoolkit }}

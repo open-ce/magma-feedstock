@@ -6,7 +6,7 @@ package:
 
 source:
    url: http://icl.utk.edu/projectsfiles/magma/downloads/magma-{{ version }}.tar.gz
-   sha1: c428c9486c5f46f3595570ec898274a8bb888d5c
+   sha1: 08b9571a19b812ea4c48c24d76dc59781216e1f0
    patches:
     # 00xx - patch is carried forward from https://github.com/pytorch/builder/
     - 0001-cmakelists.patch

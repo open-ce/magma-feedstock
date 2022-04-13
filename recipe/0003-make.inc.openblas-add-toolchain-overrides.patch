@@ -1,29 +1,20 @@
-From 758cec2c57f5254528832aee632956a65d88e93d Mon Sep 17 00:00:00 2001
-From: "Brian W. Hart" <hartb@us.ibm.com>
-Date: Wed, 12 Dec 2018 14:15:37 -0600
-Subject: [PATCH] powerai: make.inc.openblas: add toolchain overrides
+From fdedbaab1908cc276d1ac0567eac51b553968890 Mon Sep 17 00:00:00 2001
+From: Deepali Chourasia <deepch23@in.ibm.com>
+Date: Mon, 21 Mar 2022 16:07:32 +0000
+Subject: [PATCH] make.inc.openblas: add toolchain overrides
 
 ---
- make.inc-examples/make.inc.openblas | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ make.inc-examples/make.inc.openblas | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/make.inc-examples/make.inc.openblas b/make.inc-examples/make.inc.openblas
-index f73218b8..8bfbd165 100644
+index 0fb4455..d1eeb02 100644
 --- a/make.inc-examples/make.inc.openblas
 +++ b/make.inc-examples/make.inc.openblas
-@@ -22,14 +22,14 @@
- # --------------------
- # programs
+@@ -44,9 +44,9 @@ else ifeq ($(BACKEND),hip)
+ endif
  
--CC        = gcc
--CXX       = g++
--NVCC      = nvcc
--FORT      = gfortran
-+CC        ?= gcc
-+CXX       ?= g++
-+NVCC      ?= nvcc
-+FORT      ?= gfortran
- 
+ # and utilities
 -ARCH      = ar
 +ARCH      ?= ar
  ARCHFLAGS = cr
@@ -32,26 +23,26 @@ index f73218b8..8bfbd165 100644
  
  
  # --------------------
-@@ -39,14 +39,14 @@ RANLIB    = ranlib
- # can be commented out if making only static library.
+@@ -66,13 +66,13 @@ endif
  FPIC      = -fPIC
  
--CFLAGS    = -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -fopenmp
--FFLAGS    = -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -Wno-unused-dummy-argument
--F90FLAGS  = -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -Wno-unused-dummy-argument -x f95-cpp-input
--NVCCFLAGS = -O3         -DNDEBUG -DADD_       -Xcompiler "$(FPIC)" -std=c++11
--LDFLAGS   =     $(FPIC)                       -fopenmp
-+CFLAGS    ?= -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -fopenmp
-+FFLAGS    ?= -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -Wno-unused-dummy-argument
-+F90FLAGS  ?= -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -Wno-unused-dummy-argument -x f95-cpp-input
-+NVCCFLAGS ?= -O3         -DNDEBUG -DADD_       -Xcompiler "$(FPIC)" -std=c++11
-+LDFLAGS   ?=     $(FPIC)                       -fopenmp
+ # now, generate our flags
+-CFLAGS      = -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -fopenmp -std=c99
+-CXXFLAGS    = -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -fopenmp -std=c++11
+-FFLAGS      = -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -Wno-unused-dummy-argument
+-F90FLAGS    = -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -Wno-unused-dummy-argument -x f95-cpp-input
+-LDFLAGS     =     $(FPIC)                       -fopenmp
++CFLAGS      ?= -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -fopenmp -std=c99
++CXXFLAGS    ?= -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -fopenmp -std=c++11
++FFLAGS      ?= -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -Wno-unused-dummy-argument
++F90FLAGS    ?= -O3 $(FPIC) -DNDEBUG -DADD_ -Wall -Wno-unused-dummy-argument -x f95-cpp-input
++LDFLAGS     ?=     $(FPIC)                       -fopenmp
  
- # C++11 (gcc >= 4.7) is not required, but has benefits like atomic operations
--CXXFLAGS := $(CFLAGS) -std=c++11
-+CXXFLAGS ?= $(CFLAGS) -std=c++11
- CFLAGS   += -std=c99
+-DEVCCFLAGS  = -O3         -DNDEBUG -DADD_       
++DEVCCFLAGS  ?= -O3         -DNDEBUG -DADD_
  
+ # DEVCCFLAGS are populated later in `backend-specific`
  
 -- 
-2.17.2 (Apple Git-113)
+2.34.1
+

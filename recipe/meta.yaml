@@ -12,9 +12,12 @@ source:
     - 0001-cmakelists.patch
     - 0002-thread_queue.patch
     - 0003-make.inc.openblas-add-toolchain-overrides.patch
+    - 0004-getrf_shfl.patch  # incorrect results for <7.0 arch
+    - 0005-getrf_nbparam.patch  # fixes "too many resources requested for launch" error
+    - 0006-CMake.patch # removes fermi for CUDA12+
 
 build:
-  number: 1
+  number: 2
   string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }} 
   script_env:
     - CUDA_HOME
